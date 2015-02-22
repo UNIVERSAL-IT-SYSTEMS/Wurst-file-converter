@@ -16,9 +16,9 @@ public class WelcomeMenu extends Menu
 		super("Welcome", null);
 		add(new JLabel("<html>"
 			+ "<body width=512>"
-			+ "<p>This converter will convert your Wurst Client configuration "
-			+ "files from the format used in Wurst v1.4.2 and older versions to"
-			+ " the format used in Wurst v1.5 and newer versions.</p>"));
+			+ "<p>This converter will convert your Wurst Client alt list "
+			+ "files from the format used in Wurst v1.5.X and older versions to"
+			+ " the format used in Wurst v1.6 and newer versions.</p>"));
 	}
 	
 	@Override
