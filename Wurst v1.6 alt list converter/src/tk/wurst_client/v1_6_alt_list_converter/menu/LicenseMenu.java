@@ -31,7 +31,7 @@ public class LicenseMenu extends Menu
 		{
 			BufferedReader load = new BufferedReader(
 				new InputStreamReader(
-					getClass().getClassLoader().getResourceAsStream("tk/wurst_client/v1_6_alt_list_converter/resources/LICENSE")));
+					getClass().getClassLoader().getResourceAsStream(Main.RESOURCES + "LICENSE")));
 			license = load.readLine();
 			for(String line; (line = load.readLine()) != null;)
 				license += "\n" + line;

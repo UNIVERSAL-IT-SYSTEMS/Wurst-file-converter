@@ -38,7 +38,7 @@ public class OptionsMenu extends Menu
 		header.setAlignmentX(CENTER_ALIGNMENT);
 		add(header);
 		Main.instance.options = new JsonParser().parse(new InputStreamReader(
-			getClass().getClassLoader().getResourceAsStream("tk/wurst_client/v1_6_alt_list_converter/resources/options.json"))).getAsJsonObject()
+			getClass().getClassLoader().getResourceAsStream(Main.RESOURCES + "options.json"))).getAsJsonObject()
 			.get("options").getAsJsonObject();
 		JPanel optionsPanel = new JPanel(new GridLayout(0, 1));
 		optionsPanel.setBorder(BorderFactory.createEmptyBorder(5, 50, 5, 50));
