@@ -95,10 +95,10 @@ public class Converter implements Runnable
 		{	
 			try
 			{
+				JsonObject json = new JsonObject();
 				ArrayList<Alt> alts = new ArrayList<Alt>();
-				setCurrentAction("Reading alts");
+				setCurrentAction("Reading old alt list");
 				BufferedReader load = new BufferedReader(new FileReader(oldFile));
-				alts.clear();
 				for(String line = ""; (line = load.readLine()) != null;)
 				{
 					String data[] = line.split("§");
@@ -108,6 +108,8 @@ public class Converter implements Runnable
 						password = OldEncryption.decrypt(data[1]);
 					alts.add(new Alt(name, password));
 				}
+				load.close();
+				setCurrentAction("Sorting alts");
 				alts.sort(new Comparator<Alt>()
 					{
 					@Override
@@ -116,10 +118,10 @@ public class Converter implements Runnable
 						return o1.getEmail().compareToIgnoreCase(o2.getEmail());
 					}
 				});
-				load.close();
-				JsonObject json = new JsonObject();
+				setCurrentAction("Converting alts");
 				for(Alt alt : alts)
 				{
+					setCurrentAction("Converting alts (" + json.entrySet().size() + " / " + alts.size() + ")");
 					JsonObject jsonAlt = new JsonObject();
 					jsonAlt.addProperty("name",
 						NewEncryption.encrypt(alt.getEmail()));
@@ -129,6 +131,7 @@ public class Converter implements Runnable
 						NewEncryption.encrypt(Boolean.toString(alt.isCracked())));
 					json.add(NewEncryption.encrypt(alt.getEmail()), jsonAlt);
 				}
+				setCurrentAction("Saving new alt list");
 				PrintWriter save = new PrintWriter(new FileWriter(newFile));
 				save.println(gson.toJson(json));
 				save.close();
