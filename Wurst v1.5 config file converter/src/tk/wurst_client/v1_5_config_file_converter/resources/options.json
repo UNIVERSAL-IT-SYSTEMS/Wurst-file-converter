@@ -1,0 +1,52 @@
+{
+  "__comment": [
+    "Copyright © 2015 | Alexander01998 | All rights reserved.",
+    "This Source Code Form is subject to the terms of the Mozilla Public",
+    "License, v. 2.0. If a copy of the MPL was not distributed with this",
+    "file, You can obtain one at http://mozilla.org/MPL/2.0/."
+  ],
+  "options": {
+    "automaximize": {
+      "enabled": true,
+      "label": "AutoMaximize file",
+      "oldfile": "automaximize.txt",
+      "newfile": "automaximize.json"
+    },
+    "friends": {
+      "enabled": true,
+      "label": "Friends list",
+      "oldfile": "friends.txt",
+      "newfile": "friends.json"
+    },
+    "gui": {
+      "enabled": true,
+      "label": "ClickGUI layout",
+      "oldfile": "gui.txt",
+      "newfile": "gui.json"
+    },
+    "modules": {
+      "enabled": true,
+      "label": "Mod states \u0026 keybinds",
+      "oldfile": "modules.txt",
+      "newfile": "modules.json"
+    },
+    "options": {
+      "enabled": true,
+      "label": "Miscellaneous options and settings",
+      "oldfile": "values.txt",
+      "newfile": "options.json"
+    },
+    "sliders": {
+      "enabled": true,
+      "label": "Slider values",
+      "oldfile": "sliders.txt",
+      "newfile": "sliders.json"
+    },
+    "xray": {
+      "enabled": true,
+      "label": "XRay blocks",
+      "oldfile": "xray.txt",
+      "newfile": "xray.json"
+    }
+  }
+}
