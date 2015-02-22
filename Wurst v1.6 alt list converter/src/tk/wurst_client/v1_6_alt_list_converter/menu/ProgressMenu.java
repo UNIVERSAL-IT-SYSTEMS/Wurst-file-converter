@@ -28,7 +28,7 @@ public class ProgressMenu extends Menu
 		hasNavButtons = false;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		progress = new JProgressBar();
-		progress.setStringPainted(true);
+		progress.setStringPainted(false);
 		progress.setPreferredSize(new Dimension(512, progress.getPreferredSize().height));
 		progress.setIndeterminate(true);
 		progress.setAlignmentX(CENTER_ALIGNMENT);
