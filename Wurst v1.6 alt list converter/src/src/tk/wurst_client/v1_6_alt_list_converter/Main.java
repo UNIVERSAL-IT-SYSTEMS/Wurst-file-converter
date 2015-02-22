@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package tk.wurst_client.v1_5_config_file_converter;
+package src.tk.wurst_client.v1_6_alt_list_converter;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import tk.wurst_client.v1_5_config_file_converter.menu.Menu;
-import tk.wurst_client.v1_5_config_file_converter.menu.WelcomeMenu;
+import src.tk.wurst_client.v1_6_alt_list_converter.menu.Menu;
+import src.tk.wurst_client.v1_6_alt_list_converter.menu.WelcomeMenu;
 
 import com.google.gson.JsonObject;
 
@@ -28,7 +28,7 @@ public class Main extends JFrame implements Runnable
 	@Override
 	public void run()
 	{
-		setTitle("Wurst v1.5 config file converter");
+		setTitle("Wurst v1.6 alt list converter");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(640, 480);
 		setLocationRelativeTo(null);

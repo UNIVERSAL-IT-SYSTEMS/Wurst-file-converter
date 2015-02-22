@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package tk.wurst_client.v1_5_config_file_converter.menu;
+package src.tk.wurst_client.v1_6_alt_list_converter.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import tk.wurst_client.v1_5_config_file_converter.Main;
+import src.tk.wurst_client.v1_6_alt_list_converter.Main;
 
 public class FolderPathMenu extends Menu
 {
