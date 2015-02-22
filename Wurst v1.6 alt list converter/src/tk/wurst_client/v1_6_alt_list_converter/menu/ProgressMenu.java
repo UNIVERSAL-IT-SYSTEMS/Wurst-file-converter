@@ -30,6 +30,7 @@ public class ProgressMenu extends Menu
 		progress = new JProgressBar();
 		progress.setStringPainted(true);
 		progress.setPreferredSize(new Dimension(512, progress.getPreferredSize().height));
+		progress.setIndeterminate(true);
 		progress.setAlignmentX(CENTER_ALIGNMENT);
 		add(progress);
 		action = new JLabel("", JLabel.CENTER);
