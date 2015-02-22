@@ -71,10 +71,13 @@ public class Converter implements Runnable
 			if(entry.getValue().getAsJsonObject().get("enabled").getAsBoolean()
 				&& oldFile.exists())
 			{
+				setCurrentAction("Checking file size");
 				long fileSize = oldFile.length();
+				setCurrentAction("Converting " + oldFile.getName() + " to " + newFile.getName());
 				try
 				{
 					convert(oldFile, newFile);
+					setCurrentAction("Deleting old file (" + oldFile.getName() + ")");
 					if(oldFile.exists())
 						oldFile.delete();
 					converted += fileSize;
@@ -84,6 +87,7 @@ public class Converter implements Runnable
 				}finally
 				{
 					updateProgress();
+					setCurrentAction("");
 				}
 			}
 		}
@@ -144,11 +148,27 @@ public class Converter implements Runnable
 	
 	private void setCurrentAction(String action)
 	{
-		this.action.setText(action);
+		this.action.setText("<html>"
+			+ "<body width=512>"
+			+ "<center>"
+			+ action);
 	}
 	
 	private void updateProgress()
 	{
-		progress.setValue((int)(converted * 1000 / total));
+		new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				try
+				{
+					progress.setValue((int)(converted * 1000 / total));
+				}catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 }

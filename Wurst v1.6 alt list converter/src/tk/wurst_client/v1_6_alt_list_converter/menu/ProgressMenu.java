@@ -32,7 +32,7 @@ public class ProgressMenu extends Menu
 		progress.setPreferredSize(new Dimension(512, progress.getPreferredSize().height));
 		progress.setAlignmentX(CENTER_ALIGNMENT);
 		add(progress);
-		action = new JLabel("", JLabel.LEFT);
+		action = new JLabel("", JLabel.CENTER);
 		action.setAlignmentX(CENTER_ALIGNMENT);
 		add(action);
 		new SwingWorker()
