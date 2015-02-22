@@ -109,7 +109,7 @@ public class Converter implements Runnable
 					@Override
 					public int compare(Alt o1, Alt o2)
 					{
-						return o1.getName().compareToIgnoreCase(o2.getName());
+						return o1.getEmail().compareToIgnoreCase(o2.getEmail());
 					}
 				});
 				load.close();
