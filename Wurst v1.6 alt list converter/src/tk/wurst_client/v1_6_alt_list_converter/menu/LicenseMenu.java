@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package src.tk.wurst_client.v1_6_alt_list_converter.menu;
+package tk.wurst_client.v1_6_alt_list_converter.menu;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import src.tk.wurst_client.v1_6_alt_list_converter.Main;
+import tk.wurst_client.v1_6_alt_list_converter.Main;
 
 public class LicenseMenu extends Menu
 {
@@ -31,7 +31,7 @@ public class LicenseMenu extends Menu
 		{
 			BufferedReader load = new BufferedReader(
 				new InputStreamReader(
-					getClass().getClassLoader().getResourceAsStream("tk/wurst_client/v1_5_config_file_converter/resources/LICENSE")));
+					getClass().getClassLoader().getResourceAsStream("tk/wurst_client/v1_6_alt_list_converter/resources/LICENSE")));
 			license = load.readLine();
 			for(String line; (line = load.readLine()) != null;)
 				license += "\n" + line;

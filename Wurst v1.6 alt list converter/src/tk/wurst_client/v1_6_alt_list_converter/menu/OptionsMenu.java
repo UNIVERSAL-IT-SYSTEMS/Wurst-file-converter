@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package src.tk.wurst_client.v1_6_alt_list_converter.menu;
+package tk.wurst_client.v1_6_alt_list_converter.menu;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import src.tk.wurst_client.v1_6_alt_list_converter.Main;
+import tk.wurst_client.v1_6_alt_list_converter.Main;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
