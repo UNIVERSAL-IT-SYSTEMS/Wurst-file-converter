@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
 import tk.wurst_client.v1_6_alt_list_converter.alts.Alt;
@@ -36,14 +37,16 @@ public class Converter implements Runnable
 	private String path;
 	private JsonObject options;
 	private JProgressBar progress;
+	private JLabel action;
 	private long total;
 	private long converted;
 	
-	public Converter(String path, JsonObject options, JProgressBar progress)
+	public Converter(String path, JsonObject options, JProgressBar progress, JLabel action)
 	{
 		this.path = path;
 		this.options = options;
 		this.progress = progress;
+		this.action = action;
 	}
 	
 	@Override
@@ -93,6 +96,7 @@ public class Converter implements Runnable
 			try
 			{
 				ArrayList<Alt> alts = new ArrayList<Alt>();
+				setCurrentAction("Reading alts");
 				BufferedReader load = new BufferedReader(new FileReader(oldFile));
 				alts.clear();
 				for(String line = ""; (line = load.readLine()) != null;)
@@ -133,6 +137,11 @@ public class Converter implements Runnable
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private void setCurrentAction(String action)
+	{
+		this.action.setText(action);
 	}
 	
 	private void updateProgress()
