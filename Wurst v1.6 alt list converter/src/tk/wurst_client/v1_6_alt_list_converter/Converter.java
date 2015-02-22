@@ -10,9 +10,8 @@ package tk.wurst_client.v1_6_alt_list_converter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -127,18 +126,13 @@ public class Converter implements Runnable
 				{
 					setCurrentAction("Converting alts (" + json.entrySet().size() + " / " + alts.size() + ")");
 					JsonObject jsonAlt = new JsonObject();
-					jsonAlt.addProperty("name",
-						NewEncryption.encrypt(alt.getEmail()));
-					jsonAlt.addProperty("password",
-						NewEncryption.encrypt(alt.getPassword()));
-					jsonAlt.addProperty("cracked",
-						NewEncryption.encrypt(Boolean.toString(alt.isCracked())));
-					json.add(NewEncryption.encrypt(alt.getEmail()), jsonAlt);
+					jsonAlt.addProperty("name", alt.getName());
+					jsonAlt.addProperty("password", alt.getPassword());
+					jsonAlt.addProperty("cracked", alt.isCracked());
+					json.add(alt.getEmail(), jsonAlt);
 				}
-				setCurrentAction("Saving new alt list");
-				PrintWriter save = new PrintWriter(new FileWriter(newFile));
-				save.println(gson.toJson(json));
-				save.close();
+				setCurrentAction("Encrypting  and saving new alt list");
+				Files.write(newFile.toPath(), NewEncryption.encrypt(gson.toJson(json)).getBytes(NewEncryption.CHARSET));
 			}catch(Exception e)
 			{
 				e.printStackTrace();
