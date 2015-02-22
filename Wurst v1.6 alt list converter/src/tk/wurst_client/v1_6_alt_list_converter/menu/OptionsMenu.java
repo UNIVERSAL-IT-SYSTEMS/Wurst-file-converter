@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -65,6 +66,7 @@ public class OptionsMenu extends Menu
 		}
 		optionsPanel.setAlignmentX(CENTER_ALIGNMENT);
 		add(optionsPanel);
+		add(Box.createGlue());
 	}
 	
 	@Override
