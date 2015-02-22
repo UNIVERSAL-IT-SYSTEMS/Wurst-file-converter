@@ -7,13 +7,23 @@
  */
 package tk.wurst_client.v1_6_alt_list_converter;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.JProgressBar;
+
+import tk.wurst_client.v1_6_alt_list_converter.alts.Alt;
+import tk.wurst_client.v1_6_alt_list_converter.encryption.NewEncryption;
+import tk.wurst_client.v1_6_alt_list_converter.encryption.OldEncryption;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -80,7 +90,48 @@ public class Converter implements Runnable
 	{
 		if(oldFile.getName().equals("alts.wurst"))
 		{	
-			
+			try
+			{
+				ArrayList<Alt> alts = new ArrayList<Alt>();
+				BufferedReader load = new BufferedReader(new FileReader(oldFile));
+				alts.clear();
+				for(String line = ""; (line = load.readLine()) != null;)
+				{
+					String data[] = line.split("§");
+					String name = OldEncryption.decrypt(data[0]);
+					String password = "";
+					if(data.length == 2)
+						password = OldEncryption.decrypt(data[1]);
+					alts.add(new Alt(name, password));
+				}
+				alts.sort(new Comparator<Alt>()
+					{
+					@Override
+					public int compare(Alt o1, Alt o2)
+					{
+						return o1.getName().compareToIgnoreCase(o2.getName());
+					}
+				});
+				load.close();
+				JsonObject json = new JsonObject();
+				for(Alt alt : alts)
+				{
+					JsonObject jsonAlt = new JsonObject();
+					jsonAlt.addProperty("name",
+						NewEncryption.encrypt(alt.getName()));
+					jsonAlt.addProperty("password",
+						NewEncryption.encrypt(alt.getPassword()));
+					jsonAlt.addProperty("cracked",
+						NewEncryption.encrypt(Boolean.toString(alt.isCracked())));
+					json.add(NewEncryption.encrypt(alt.getEmail()), jsonAlt);
+				}
+				PrintWriter save = new PrintWriter(new FileWriter(newFile));
+				save.println(gson.toJson(json));
+				save.close();
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 	
