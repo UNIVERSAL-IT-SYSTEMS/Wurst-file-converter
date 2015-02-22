@@ -118,7 +118,7 @@ public class Converter implements Runnable
 				{
 					JsonObject jsonAlt = new JsonObject();
 					jsonAlt.addProperty("name",
-						NewEncryption.encrypt(alt.getName()));
+						NewEncryption.encrypt(alt.getEmail()));
 					jsonAlt.addProperty("password",
 						NewEncryption.encrypt(alt.getPassword()));
 					jsonAlt.addProperty("cracked",
