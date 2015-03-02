@@ -50,9 +50,6 @@ public class Converter implements Runnable
 				try
 				{
 					convert(oldFile, newFile);
-					setCurrentAction("Deleting old file (" + oldFile.getName() + ")");
-					if(oldFile.exists())
-						oldFile.delete();
 				}catch(IOException e)
 				{
 					e.printStackTrace();
