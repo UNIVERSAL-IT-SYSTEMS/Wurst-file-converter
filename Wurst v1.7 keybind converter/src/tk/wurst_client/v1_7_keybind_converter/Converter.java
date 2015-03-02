@@ -42,17 +42,7 @@ public class Converter implements Runnable
 	@Override
 	public void run()
 	{
-		progress.setMinimum(0);
-		progress.setMaximum(1000);
 		Iterator<Entry<String, JsonElement>> itr = options.entrySet().iterator();
-		while(itr.hasNext())
-		{
-			Map.Entry<String, JsonElement> entry = itr.next();
-			File file = new File(path, entry.getKey() + ".txt");
-			if(file.exists())
-				total += file.length();
-		}
-		itr = options.entrySet().iterator();
 		while(itr.hasNext())
 		{
 			Map.Entry<String, JsonElement> entry = itr.next();
