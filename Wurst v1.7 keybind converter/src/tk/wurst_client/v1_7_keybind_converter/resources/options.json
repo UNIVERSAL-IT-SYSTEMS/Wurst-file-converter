@@ -6,11 +6,11 @@
     "file, You can obtain one at http://mozilla.org/MPL/2.0/."
   ],
   "options": {
-    "alts": {
+    "keybinds": {
       "enabled": true,
-      "label": "Alt list",
-      "oldfile": "alts.wurst",
-      "newfile": "alts.json"
+      "label": "Keybinds",
+      "oldfile": "modules.json",
+      "newfile": "keybinds.json"
     }
   }
 }
