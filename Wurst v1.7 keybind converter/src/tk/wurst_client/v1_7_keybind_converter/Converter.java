@@ -7,11 +7,16 @@
  */
 package tk.wurst_client.v1_7_keybind_converter;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import javax.swing.JLabel;
 
@@ -19,6 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class Converter implements Runnable
 {
@@ -65,7 +71,36 @@ public class Converter implements Runnable
 	{
 		if(oldFile.getName().equals("modules.json"))
 		{
-			
+			try
+			{
+				setCurrentAction("Reading old keybinds");
+				BufferedReader load = new BufferedReader(new FileReader(oldFile));
+				JsonObject json = (JsonObject)new JsonParser().parse(load);
+				load.close();
+				setCurrentAction("Converting keybinds");
+				TreeMap<String, String> keybinds = new TreeMap<String, String>();
+				Iterator<Entry<String, JsonElement>> itr1 = json.entrySet().iterator();
+				while(itr1.hasNext())
+				{
+					Entry<String, JsonElement> entry = itr1.next();
+					JsonObject jsonModule = (JsonObject)entry.getValue();
+					keybinds.put(jsonModule.get("keybind").getAsString(), ".t " + entry.getKey().toLowerCase());
+				}
+				json = new JsonObject();
+				Iterator<Entry<String, String>> itr2 = keybinds.entrySet().iterator();
+				while(itr2.hasNext())
+				{
+					Entry<String, String> entry = itr2.next();
+					json.addProperty(entry.getKey(), entry.getValue());
+				}
+				setCurrentAction("Saving converted keybinds");
+				PrintWriter save = new PrintWriter(new FileWriter(newFile));
+				save.println(gson.toJson(json));
+				save.close();
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 	
