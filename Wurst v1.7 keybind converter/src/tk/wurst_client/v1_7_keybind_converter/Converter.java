@@ -56,7 +56,7 @@ public class Converter implements Runnable
 				try
 				{
 					convert(oldFile, newFile);
-				}catch(IOException e)
+				}catch(Exception e)
 				{
 					e.printStackTrace();
 				}finally
