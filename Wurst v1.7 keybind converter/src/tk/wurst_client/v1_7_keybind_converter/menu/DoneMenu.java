@@ -16,7 +16,7 @@ public class DoneMenu extends Menu
 		super("Done!", null);
 		hasNextMenu = false;
 		add(new JLabel("<html>"
-			+ "<p>Your alt list has been successfully converted.</p>"));
+			+ "<p>Your keybinds have been successfully converted.</p>"));
 	}
 	
 	@Override
