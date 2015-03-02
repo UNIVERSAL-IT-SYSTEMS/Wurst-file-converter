@@ -41,7 +41,7 @@ public class ProgressMenu extends Menu
 			@Override
 			protected Object doInBackground() throws Exception
 			{
-				new Converter(Main.instance.path, Main.instance.options, progress, action).run();
+				new Converter(Main.instance.path, Main.instance.options, action).run();
 				showNextMenu();
 				return null;
 			}

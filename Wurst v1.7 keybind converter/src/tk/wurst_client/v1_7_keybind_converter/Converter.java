@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.JLabel;
-import javax.swing.JProgressBar;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,16 +25,12 @@ public class Converter implements Runnable
 	private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	private String path;
 	private JsonObject options;
-	private JProgressBar progress;
 	private JLabel action;
-	private long total;
-	private long converted;
 	
-	public Converter(String path, JsonObject options, JProgressBar progress, JLabel action)
+	public Converter(String path, JsonObject options, JLabel action)
 	{
 		this.path = path;
 		this.options = options;
-		this.progress = progress;
 		this.action = action;
 	}
 	
@@ -51,8 +46,6 @@ public class Converter implements Runnable
 			if(entry.getValue().getAsJsonObject().get("enabled").getAsBoolean()
 				&& oldFile.exists())
 			{
-				setCurrentAction("Checking file size");
-				long fileSize = oldFile.length();
 				setCurrentAction("Converting " + oldFile.getName() + " to " + newFile.getName());
 				try
 				{
@@ -60,13 +53,11 @@ public class Converter implements Runnable
 					setCurrentAction("Deleting old file (" + oldFile.getName() + ")");
 					if(oldFile.exists())
 						oldFile.delete();
-					converted += fileSize;
 				}catch(IOException e)
 				{
 					e.printStackTrace();
 				}finally
 				{
-					updateProgress();
 					setCurrentAction("");
 				}
 			}
@@ -87,23 +78,5 @@ public class Converter implements Runnable
 			+ "<body width=512>"
 			+ "<center>"
 			+ action);
-	}
-	
-	private void updateProgress()
-	{
-		new Thread(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				try
-				{
-					progress.setValue((int)(converted * 1000 / total));
-				}catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		}).start();
 	}
 }
