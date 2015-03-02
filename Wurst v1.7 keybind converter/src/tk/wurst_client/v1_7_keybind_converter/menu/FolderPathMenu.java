@@ -65,6 +65,6 @@ public class FolderPathMenu extends Menu
 	@Override
 	public void showNextMenu()
 	{
-		showMenu(new OptionsMenu(this));
+		showMenu(new ProgressMenu());
 	}
 }
