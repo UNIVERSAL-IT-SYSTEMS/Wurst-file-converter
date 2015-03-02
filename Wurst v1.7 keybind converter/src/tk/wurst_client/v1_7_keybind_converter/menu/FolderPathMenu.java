@@ -35,7 +35,7 @@ public class FolderPathMenu extends Menu
 		JLabel header = new JLabel("<html>"
 			+ "<body width=512>"
 			+ "<center>"
-			+ "<p>This is where your alt list is stored.</p>", SwingConstants.CENTER);
+			+ "<p>This is where your keybinds are stored.</p>", SwingConstants.CENTER);
 		header.setAlignmentX(CENTER_ALIGNMENT);
 		add(header);
 		add(Box.createVerticalStrut(20));
