@@ -24,7 +24,7 @@ public class Main extends JFrame implements Runnable
 	public JButton nextButton;
 	public String path;
 	public JsonObject options;
-	public static final String RESOURCES = "tk/wurst_client/v1_6_alt_list_converter/resources/";
+	public static final String RESOURCES = Main.class.getPackage().getName().replace(".", "/") + "/resources/";
 	
 	@Override
 	public void run()
