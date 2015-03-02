@@ -29,7 +29,7 @@ public class Main extends JFrame implements Runnable
 	@Override
 	public void run()
 	{
-		setTitle("Wurst v1.6 alt list converter");
+		setTitle("Wurst v1.7 keybind converter");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(640, 480);
 		setLocationRelativeTo(null);
