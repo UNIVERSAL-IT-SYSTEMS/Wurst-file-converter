@@ -16,14 +16,11 @@ import javax.swing.*;
 import tk.wurst_client.v1_7_keybind_converter.menu.Menu;
 import tk.wurst_client.v1_7_keybind_converter.menu.WelcomeMenu;
 
-import com.google.gson.JsonObject;
-
 public class Main extends JFrame implements Runnable
 {
 	public static Main instance = new Main();
 	public JButton nextButton;
 	public String path;
-	public JsonObject options;
 	public static final String RESOURCES = Main.class.getPackage().getName().replace(".", "/") + "/resources/";
 	
 	@Override

@@ -8,11 +8,15 @@
 package tk.wurst_client.v1_7_keybind_converter.menu;
 
 import java.awt.Dimension;
+import java.io.InputStreamReader;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingWorker;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import tk.wurst_client.v1_7_keybind_converter.Converter;
 import tk.wurst_client.v1_7_keybind_converter.Main;
@@ -41,7 +45,11 @@ public class ProgressMenu extends Menu
 			@Override
 			protected Object doInBackground() throws Exception
 			{
-				new Converter(Main.instance.path, Main.instance.options, action).run();
+				JsonObject options = new JsonParser().parse(
+					new InputStreamReader(getClass().getClassLoader()
+						.getResourceAsStream(Main.RESOURCES + "options.json")))
+					.getAsJsonObject().get("options").getAsJsonObject();
+				new Converter(Main.instance.path, options, action).run();
 				showNextMenu();
 				return null;
 			}
